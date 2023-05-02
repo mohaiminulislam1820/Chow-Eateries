@@ -1,10 +1,12 @@
 import React from 'react';
+import Pdf from "react-to-pdf";
 
 const Blog = () => {
+    const ref = React.createRef();
     return (
         <div className='mt-20 w-10/12 mx-auto'>
             <h1 className='mb-14 text-4xl font-bold text-center'>Blog</h1>
-            <div className='mb-20'>
+            <div ref={ref} className='mb-20 p-8'>
 
                 <p className='mb-2 text-gray-500'> Q : What are the differences between uncontrolled and controlled components? </p>
                 <p className='mb-6 text-slate-800 font-medium'>Answer : Controlled components do not have their own state, rather they recieve a callback update and value via props from their parent and relies on React to manage it. Uncontrolled components have their own state and manage it themselves ensuring a single source of truth. </p>
@@ -20,8 +22,12 @@ const Blog = () => {
             </div>
 
             <div className='text-center'>
-            <h2 className='mb-4 text-xl font-medium'>Get Your Pdf</h2>
-            <button className='text-2xl font-bold text-white bg-slate-800 rounded-lg px-4 py-1'>🗎</button>
+                <h2 className='mb-4 text-xl font-medium'>Get Your Pdf</h2>
+
+                <Pdf targetRef={ref} filename="code-example.pdf">
+                    {({ toPdf }) =><button className='text-2xl font-bold text-white bg-slate-800 rounded-lg px-4 py-1' onClick={toPdf}>🗎</button> }
+                </Pdf>
+                
             </div>
         </div>
     );
