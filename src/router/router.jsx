@@ -7,43 +7,48 @@ import Blog from "../Components/Blog";
 import ChefRecipes from "../HomeComponents/ChefRecipes";
 import Error404 from "../Components/Error404";
 import AuthProvider from "../Auth Providers/AuthProvider";
+import PrivateRoute from "./PrivateRoute";
 
 
-const router=createBrowserRouter([
+const router = createBrowserRouter([
     {
-        path:'/', 
+        path: '/',
         element:
-        <AuthProvider>
-            <App></App>
-        </AuthProvider>,
-        errorElement: <Error404/>,
-        children:[
+            <AuthProvider>
+                <App></App>
+            </AuthProvider>,
+        errorElement: <Error404 />,
+        children: [
             {
-                path:'/',
-                element: <Home/>
+                path: '/',
+                element: <Home />
             },
             {
-                path:'/login',
+                path: '/login',
                 element: <Login />
             },
             {
-                path:'/register',
+                path: '/register',
                 element: <Register />
             },
             {
-                path:'/blog',
+                path: '/blog',
                 element: <Blog />
             },
             {
-                path:'/chefRecipes/:chefCode',
-                element: <ChefRecipes />,
-                loader: ({params})=>fetch(`https://chow-eateries-api.vercel.app/chefs/${params.chefCode}`)
+                path: '/chefRecipes/:chefCode',
+                element:
+                    <PrivateRoute>
+                        <ChefRecipes />
+                    </PrivateRoute>
+                ,
+                loader: ({ params }) => fetch(`https://chow-eateries-api.vercel.app/chefs/${params.chefCode}`)
             },
         ]
     },
     {
-        path:"*",
-        element: <Error404/>
+        path: "*",
+        element: <Error404 />
     }
 ]);
 

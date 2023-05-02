@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Auth Providers/AuthProvider';
 
 
 const Login = () => {
-    const { setLoading, loginWithEmail, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+    const { setLoading, loginWithEmail, signInWithGoogle, signInWithGithub,currentLocation } = useContext(AuthContext);
+
+    const from=currentLocation?.state?.from || '/';
+    const navigate=useNavigate();
 
     const [errorMsg,setErrorMsg]=useState('');
 
@@ -14,6 +17,10 @@ const Login = () => {
         const password=e.target.password.value;
 
         loginWithEmail(email,password)
+        .then(result=>result.user
+            ? navigate(from, {replace:true})
+            :''
+            )
         .catch((error)=>{
             console.log(error.code);
             setErrorMsg('⛔ '+error.code);
@@ -24,6 +31,10 @@ const Login = () => {
 
     const handleGoogle=()=>{
         signInWithGoogle()
+        .then(result=>result.user
+            ? navigate(from, {replace:true})
+            :''
+            )
         .catch((error)=>{
             console.log(error.code);
             setErrorMsg('⛔ '+error.code);
@@ -33,6 +44,10 @@ const Login = () => {
 
     const handleGithub=()=>{
         signInWithGithub()
+        .then(result=>result.user
+            ? navigate(from, {replace:true})
+            :''
+            )
         .catch((error)=>{
             console.log(error.code);
             setErrorMsg('⛔ '+error.code);
