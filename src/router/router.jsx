@@ -5,12 +5,14 @@ import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Blog from "../Components/Blog";
 import ChefRecipes from "../HomeComponents/ChefRecipes";
+import Error404 from "../Components/Error404";
 
 
 const router=createBrowserRouter([
     {
         path:'/', 
         element: <App></App>,
+        errorElement: <Error404/>,
         children:[
             {
                 path:'/',
@@ -34,6 +36,10 @@ const router=createBrowserRouter([
                 loader: ({params})=>fetch(`https://chow-eateries-api.vercel.app/chefs/${params.chefCode}`)
             },
         ]
+    },
+    {
+        path:"*",
+        element: <Error404/>
     }
 ]);
 
