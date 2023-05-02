@@ -4,6 +4,7 @@ import Home from "../Main/Home";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Blog from "../Components/Blog";
+import BannerHome from "../Main/BannerHome";
 
 const router=createBrowserRouter([
     {
@@ -12,7 +13,7 @@ const router=createBrowserRouter([
         children:[
             {
                 path:'/',
-                element: <Home />
+                element: <BannerHome />
             },
             {
                 path:'/login',
