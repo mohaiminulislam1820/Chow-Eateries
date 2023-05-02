@@ -6,12 +6,16 @@ import Register from "../Components/Register";
 import Blog from "../Components/Blog";
 import ChefRecipes from "../HomeComponents/ChefRecipes";
 import Error404 from "../Components/Error404";
+import AuthProvider from "../Auth Providers/AuthProvider";
 
 
 const router=createBrowserRouter([
     {
         path:'/', 
-        element: <App></App>,
+        element:
+        <AuthProvider>
+            <App></App>
+        </AuthProvider>,
         errorElement: <Error404/>,
         children:[
             {
