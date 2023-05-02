@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import ActiveLink from './ActiveLink';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Auth Providers/AuthProvider';
+import Loading from '../Components/Loading'
 
 const NavBar = () => {
 
-    const {user,signOutUser}=useContext(AuthContext);
+    const {user,signOutUser,loading}=useContext(AuthContext);
 
 
     return (
@@ -18,7 +19,9 @@ const NavBar = () => {
             </div>
 
             <div>
-               { user
+               { loading
+               ? <Loading></Loading>
+               : user
                 ?<div className='flex flex-wrap gap-y-6 items-center'>
                     <img src={user.photoURL} alt="profile photo" className='w-10 inline mr-2 rounded-full' />
                     <p className='inline mr-4'>{user.displayName}</p>
