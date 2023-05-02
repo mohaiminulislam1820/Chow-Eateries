@@ -9,9 +9,9 @@
 
 .loader {
   font-size: 10px;
-  margin: 50px auto;
-  width: 11em;
-  height: 11em;
+  margin: 0 auto;
+  width: 7em;
+  height: 7em;
   border-radius: 50%;
   border: 1px rgb(230, 230, 230) solid;
   position: relative;
