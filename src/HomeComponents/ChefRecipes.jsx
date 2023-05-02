@@ -18,7 +18,7 @@ const ChefRecipes = () => {
         loadData();
 
     },[])
-console.log(recipes)
+
     return (
         <div>
             <ChefBanner chef={chef}></ChefBanner>
