@@ -4,6 +4,7 @@ import Home from "../HomeComponents/Home";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Blog from "../Components/Blog";
+import ChefRecipes from "../HomeComponents/ChefRecipes";
 
 
 const router=createBrowserRouter([
@@ -26,6 +27,11 @@ const router=createBrowserRouter([
             {
                 path:'/blog',
                 element: <Blog />
+            },
+            {
+                path:'/chefRecipes/:chefCode',
+                element: <ChefRecipes />,
+                loader: ({params})=>fetch(`https://chow-eateries-api.vercel.app/chefs/${params.chefCode}`)
             },
         ]
     }

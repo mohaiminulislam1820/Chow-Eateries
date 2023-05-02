@@ -14,7 +14,7 @@ const Chefs = () => {
         loadData();
 
     },[])
-console.log(chefs)
+
     return (
         <div className='w-10/12 mx-auto mb-36'>
             <h1 className='font-bold text-4xl text-center mb-6'>Meet the Chefs <br /> Behind Your Favorite Recipes</h1>

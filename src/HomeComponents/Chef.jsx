@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Chef = ({ chef }) => {
     const { chef_code, imageChef, chefName, experience, likes, recipeNumber } = chef;
 
+    const navigate=useNavigate();
+
     const handleViewRecipe = (code) => {
-        console.log(code)
+        navigate(`/chefRecipes/${code}`);
     }
     return (
         <div className='p-6 border rounded-lg shadow-md text-gray-500'>
