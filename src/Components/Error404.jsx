@@ -10,6 +10,7 @@ const Error404 = () => {
             <div className='flex justify-center mt-8'>
                 <button className='px-9 py-4 bg-slate-800 text-yellow-300 font-bold rounded-lg' onClick={()=>navigate('/')}>Go Back to HomePage</button>
             </div>
+            
         </div>
     );
 };
