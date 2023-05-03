@@ -66,9 +66,10 @@
   order: -1;
 }
 
-@media screen and (max-width: 1000px) {
-  .profile-photo:hover~.hidden-unhovered {
+@media (max-width: 1000px) {
+  .profile-photo:hover ~ .hidden-unhovered {
     display: block;
     order: 0;
   }
+
 }
