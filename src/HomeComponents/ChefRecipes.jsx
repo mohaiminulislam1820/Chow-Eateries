@@ -40,7 +40,8 @@ const ChefRecipes = () => {
 
                     </div>
 
-                </div>}
+                </div>
+                }
         </>
 
     );
