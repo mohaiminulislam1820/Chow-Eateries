@@ -22,9 +22,9 @@ const NavBar = () => {
                { loading
                ? <Loading></Loading>
                : user
-                ?<div className='flex flex-wrap gap-y-6 items-center'>
-                    <img src={user.photoURL} alt="profile photo" className='w-10 inline mr-2 rounded-full' />
-                    <p className='inline mr-4'>{user.displayName || ''}</p>
+                ?<div className='flex flex-wrap gap-x-4 gap-y-6 items-center'>
+                    <img src={user.photoURL} alt="profile photo" className='w-14 h-14 border-2 border-yellow-300 object-cover inline  rounded-full' />
+                    <p className='inline  hidden'>{user.displayName || ''}</p>
                     <button className='font-bold bg-[#0D1010] text-yellow-200 px-8 py-3 rounded-lg ' onClick={signOutUser}>Sign Out</button>
                 </div>
                 :<Link to="/login" className='font-bold bg-[#0D1010] text-yellow-200 px-8 py-3 rounded-lg'>Login</Link>}

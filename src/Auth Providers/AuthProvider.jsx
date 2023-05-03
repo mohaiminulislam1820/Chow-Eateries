@@ -46,9 +46,9 @@ const AuthProvider = ({children}) => {
         return ()=>unsubscribe();
     },[]);
 
+console.log(user)
 
-
-    const contexts={user,setUser,createNewUserWithEmail,loginWithEmail,signOutUser,signInWithGoogle,signInWithGithub,currentLocation,loading};
+    const contexts={user,setUser,createNewUserWithEmail,loginWithEmail,signOutUser,signInWithGoogle,signInWithGithub,currentLocation,loading,setLoading};
 
 
 

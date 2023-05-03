@@ -4,55 +4,60 @@ import { AuthContext } from '../Auth Providers/AuthProvider';
 
 
 const Login = () => {
-    const { setLoading, loginWithEmail, signInWithGoogle, signInWithGithub,currentLocation } = useContext(AuthContext);
+    const { setLoading, loginWithEmail, signInWithGoogle, signInWithGithub, currentLocation } = useContext(AuthContext);
 
-    const from=currentLocation?.state?.from || '/';
-    const navigate=useNavigate();
+    const from = currentLocation?.state?.from || '/';
+    const navigate = useNavigate();
 
-    const [errorMsg,setErrorMsg]=useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const email=e.target.email.value;
-        const password=e.target.password.value;
-
-        loginWithEmail(email,password)
-        .then(result=>result.user
-            ? navigate(from, {replace:true})
-            :''
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        
+        loginWithEmail(email, password)
+            .then(result => {
+                
+                result.user
+                    ? navigate(from, { replace: true })
+                    : ''
+            }
             )
-        .catch((error)=>{
-            console.log(error.code);
-            setErrorMsg('⛔ '+error.code);
-            setTimeout(()=>setErrorMsg(''),4000)
-        })
+            .catch((error) => {
+                
+                setErrorMsg('⛔ ' + error.code);
+                setTimeout(() => setErrorMsg(''), 4000);
+                
+            })
+            setLoading(false);
 
     }
 
-    const handleGoogle=()=>{
+    const handleGoogle = () => {
         signInWithGoogle()
-        .then(result=>result.user
-            ? navigate(from, {replace:true})
-            :''
+            .then(result => result.user
+                ? navigate(from, { replace: true })
+                : ''
             )
-        .catch((error)=>{
-            console.log(error.code);
-            setErrorMsg('⛔ '+error.code);
-            setTimeout(()=>setErrorMsg(''),4000)
-        })
+            .catch((error) => {
+
+                setErrorMsg('⛔ ' + error.code);
+                setTimeout(() => setErrorMsg(''), 4000)
+            })
     }
 
-    const handleGithub=()=>{
+    const handleGithub = () => {
         signInWithGithub()
-        .then(result=>result.user
-            ? navigate(from, {replace:true})
-            :''
+            .then(result => result.user
+                ? navigate(from, { replace: true })
+                : ''
             )
-        .catch((error)=>{
-            console.log(error.code);
-            setErrorMsg('⛔ '+error.code);
-            setTimeout(()=>setErrorMsg(''),4000)
-        })
+            .catch((error) => {
+
+                setErrorMsg('⛔ ' + error.code);
+                setTimeout(() => setErrorMsg(''), 4000)
+            })
     }
 
 
@@ -62,24 +67,24 @@ const Login = () => {
 
                 <h1 className='text-2xl font-bold mb-10 text-center'>Sign in to your account</h1>
                 <div className="mb-6">
-                    <label className="block text-grey-darker text-sm font-bold mb-4" htmlFor="email">
+                    <label className="block  text-sm font-bold mb-4" htmlFor="email">
                         Your Email
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="email" type="email" placeholder="email" required />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-3 " name="email" type="email" placeholder="email" required />
                 </div>
                 <div className="mb-6">
                     <label className="block  text-sm font-bold mb-4" htmlFor="password">
                         Password
                     </label>
                     <input className="shadow  border border-red rounded w-full py-2 px-3  mb-3" name="password" type="password" placeholder="******" required />
-                    <p className="text-gray-500 mt-2 mb-4">Don't have an Account?<Link to="/register" className='ml-1 font-semibold text-blue-600'> Sign Up here</Link></p>
-                    
+                    <p className="text-gray-500 mt-2 mb-4">Don't have an Account?<Link to="/register" className='ml-1 font-semibold text-blue-600 border-b-2 border-blue-500 '> Sign Up here</Link></p>
+
                 </div>
 
                 <button className="bg-slate-800 text-yellow-200 font-bold py-3 px-8 rounded-lg" type="submit">
                     Sign In
                 </button>
-                <p className='text-red-400 my-2'>{errorMsg}</p>
+                <p className='text-red-400 my-2 ml-4 inline'>{errorMsg}</p>
             </form>
 
             <div className='flex items-center mt-8 mb-6'>
