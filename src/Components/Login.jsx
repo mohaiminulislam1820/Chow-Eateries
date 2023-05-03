@@ -15,6 +15,12 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+
+        if(email=='' || password== ''){
+            setErrorMsg('⛔ ' +'Cannot submit empty email and password fields');
+            setTimeout(() => setErrorMsg(''), 4000);
+            return;
+        }
         
         loginWithEmail(email, password)
             .then(result => {
@@ -70,13 +76,13 @@ const Login = () => {
                     <label className="block  text-sm font-bold mb-4" htmlFor="email">
                         Your Email
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 " name="email" type="email" placeholder="email" required />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-3 " name="email" type="email" placeholder="email"  />
                 </div>
                 <div className="mb-6">
                     <label className="block  text-sm font-bold mb-4" htmlFor="password">
                         Password
                     </label>
-                    <input className="shadow  border border-red rounded w-full py-2 px-3  mb-3" name="password" type="password" placeholder="******" required />
+                    <input className="shadow  border border-red rounded w-full py-2 px-3  mb-3" name="password" type="password" placeholder="******"  />
                     <p className="text-gray-500 mt-2 mb-4">Don't have an Account?<Link to="/register" className='ml-1 font-semibold text-blue-600 border-b-2 border-blue-500 '> Sign Up here</Link></p>
 
                 </div>

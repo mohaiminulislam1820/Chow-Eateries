@@ -8,6 +8,7 @@ const Recipe = ({recipe}) => {
     const handleClick=(e)=>{
         toast('✅ This recipe is your favorite.');
         e.target.setAttribute('disabled','true');
+        e.target.classList.remove('text-yellow-300')
         e.target.classList.add('text-gray-300');
         
     }
