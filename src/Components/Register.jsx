@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Auth Providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import auth from '../Firebase config/firebase_config';
@@ -7,7 +7,9 @@ import { toast } from 'react-toastify';
 
 const Register = () => {
 
-    const { createNewUserWithEmail,setUser } = useContext(AuthContext);
+    const { createNewUserWithEmail,signOutUser } = useContext(AuthContext);
+
+    const navigate=useNavigate();
 
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -39,8 +41,10 @@ const Register = () => {
 
                 updateProfile(auth.currentUser, { displayName: name, photoURL: pictureURL })
                 .then(()=>{
-                    setUser(null)
+                    signOutUser();
                 })
+
+                navigate('/login');
 
             })
             .catch(error => {
