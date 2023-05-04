@@ -6,7 +6,7 @@ import Loading from '../Components/Loading'
 
 const NavBar = () => {
 
-    const {user,signOutUser,loading}=useContext(AuthContext);
+    const { user, signOutUser, loading } = useContext(AuthContext);
 
 
     return (
@@ -19,18 +19,22 @@ const NavBar = () => {
             </div>
 
             <div>
-               { loading
-               ? <Loading></Loading>
-               : user
-                ?<div className='flex flex-wrap gap-x-4 gap-y-6 items-center'>
+                {loading
+                    ? <Loading></Loading>
+                    : user
+                        ? <div className='flex flex-wrap gap-x-6 gap-y-6 items-center'>
 
-                    <img src={user.photoURL|| ''} alt="profile photo" className='profile-photo w-14 h-14 border-2 border-yellow-300 object-cover inline  rounded-full' />
+                            <div className='relative'>
 
-                    <p className='hidden-unhovered font-medium'>{user.displayName || ''}</p>
+                                <img src={user.photoURL || ''} alt="profile photo" className='profile-photo w-14 h-14 border-2 border-yellow-300 object-cover inline  rounded-full' />
 
-                    <button className='font-bold bg-[#0D1010] text-yellow-200 px-8 py-3 rounded-lg ' onClick={signOutUser}>Sign Out</button>
-                </div>
-                :<Link to="/login" className='font-bold bg-[#0D1010] text-yellow-200 px-8 py-3 rounded-lg'>Login</Link>}
+                                <span className='hidden-unhovered font-medium absolute'>{user.displayName || ''}</span>
+
+                            </div>
+
+                            <button className='font-bold bg-[#0D1010] text-yellow-200 px-8 py-3 rounded-lg ' onClick={signOutUser}>Sign Out</button>
+                        </div>
+                        : <Link to="/login" className='font-bold bg-[#0D1010] text-yellow-200 px-8 py-3 rounded-lg'>Login</Link>}
             </div>
         </nav>
     );
