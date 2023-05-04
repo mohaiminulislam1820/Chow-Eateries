@@ -8,6 +8,8 @@ import ChefRecipes from "../HomeComponents/ChefRecipes";
 import Error404 from "../Components/Error404";
 import AuthProvider from "../Auth Providers/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 
 const router = createBrowserRouter([
@@ -17,7 +19,14 @@ const router = createBrowserRouter([
             <AuthProvider>
                 <App></App>
             </AuthProvider>,
-        errorElement: <Error404 />,
+        errorElement:
+            <>
+                <AuthProvider>
+                    <Header></Header>
+                    <Error404 />
+                    <Footer></Footer>
+                </AuthProvider>
+            </>,
         children: [
             {
                 path: '/',
@@ -48,7 +57,13 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <Error404 />
+        element: <>
+            <AuthProvider>
+                <Header></Header>
+                <Error404 />
+                <Footer></Footer>
+            </AuthProvider>
+        </>
     }
 ]);
 

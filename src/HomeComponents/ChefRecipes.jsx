@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import ChefBanner from './ChefBanner';
 import Recipe from './Recipe';
 import Loading from '../Components/Loading';
@@ -7,14 +7,19 @@ import Loading from '../Components/Loading';
 const ChefRecipes = () => {
 
     const chef = useLoaderData();
+    const navigate=useNavigate();
+    const {chefCode}=useParams();
 
     const [recipes, setRecipes] = useState([]);
     const [loadingState, setLoadingState] = useState(true);
 
     useEffect(() => {
         const loadData = async () => {
-            const res = await fetch(`https://chow-eateries-api.vercel.app/recipes/${chef.chef_code}`);
+            const res = await fetch(`https://chow-eateries-api.vercel.app/recipes/${chefCode}`);
             const data = await res.json();
+            
+            if(data==null)
+                navigate('/error')
             setRecipes(data.recipes);
             setLoadingState(false);
         }
