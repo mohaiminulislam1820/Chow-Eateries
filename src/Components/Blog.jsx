@@ -6,7 +6,7 @@ const Blog = () => {
     const options = {
         orientation: 'landscape',
         unit: 'in',
-        format: [14, 10]
+        format: [14, 14]
     }
 
     return (
