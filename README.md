@@ -1,7 +1,7 @@
 # Project - Chow Eateries
 
 ### Live Site Link-
-https://nomadic-proton-340308.web.app/
+https://chow-eateries.web.app/
 
 Chow Eateries is a react single page application website showcasing Indonesian Top chefs and their recipes (fake data). 
 
